@@ -1,25 +1,66 @@
-# Calculadora de IMC
+# API de IMC com Java
 
-Projeto simples em Python para calcular o IMC de uma pessoa e classificar o resultado.
+Projeto iniciante para praticar back-end com Java usando apenas recursos da linguagem. A primeira versão era uma calculadora de IMC em Python no terminal; agora o repositório também mostra uma evolução para uma API HTTP simples em Java.
 
-## O que pratiquei
+## O que este projeto demonstra
 
-- Entrada de dados
-- Funcoes
-- Condicionais
-- Formatacao de texto
+- Criação de servidor HTTP em Java
+- Endpoint `POST` para cálculo de IMC
+- Separação entre entrada, regra de negócio e resposta
+- Validação básica de dados
+- Resposta em JSON
+- Evolução de lógica de terminal para uma pequena API back-end
 
-## Como executar
+## Como executar a versão Java
+
+Requisito: Java 17 ou superior.
+
+```bash
+javac src/ImcApi.java
+java -cp src ImcApi
+```
+
+A API sobe em:
+
+```text
+http://localhost:8080
+```
+
+## Rotas
+
+| Método | Rota | Descrição |
+|---|---|---|
+| `GET` | `/health` | Verifica se a API está online |
+| `POST` | `/imc` | Calcula o IMC a partir de peso e altura |
+
+## Exemplo
+
+```bash
+curl -X POST http://localhost:8080/imc \
+  -H "Content-Type: application/json" \
+  -d '{"peso":72,"altura":1.75}'
+```
+
+Resposta esperada:
+
+```json
+{
+  "imc": 23.51,
+  "classificacao": "Peso normal"
+}
+```
+
+## Versão anterior em Python
+
+O arquivo `imc.py` foi mantido como registro da primeira etapa do projeto, praticando entrada de dados, funções e condicionais.
 
 ```bash
 python imc.py
 ```
 
-## Exemplo
+## Próximos passos
 
-```text
-Peso: 72
-Altura: 1.75
-IMC: 23.51
-Classificacao: Peso normal
-```
+- Criar classes separadas para service e controller
+- Melhorar o parser de JSON usando uma biblioteca
+- Criar testes automatizados
+- Evoluir para Spring Boot quando a base de Java estiver mais firme
